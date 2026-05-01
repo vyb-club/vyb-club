@@ -679,11 +679,11 @@ function getPlanAlerts(profile) {
     });
   }
 
-  alerts.push({
-    type: "info",
-    title: "Debt safety floor",
-    message: "Debt follows the amount kept safe, but very low risk scores can increase debt beyond the 10% floor. No active asset bucket is kept below Rs 500."
-  });
+  // alerts.push({
+  //   type: "info",
+  //   title: "Debt safety floor",
+  //   message: "Debt follows the amount kept safe, but very low risk scores can increase debt beyond the 10% floor. No active asset bucket is kept below Rs 500."
+  // });
 
   return alerts;
 }
