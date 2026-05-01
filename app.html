@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vyb-Club Planner</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/animations.css">
+</head>
+<body class="app-page" data-theme="dark">
+  <div class="app-ambient" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Finance Coach home">
+      <span>VC</span>
+      Vyb-Club
+    </a>
+    <div class="topbar-actions">
+      <nav aria-label="Planner sections">
+        <a href="./learn.html">Learn</a>
+        <a href="#insurance">Insurance</a>
+        <a href="#planner">Planner</a>
+        <a href="#funds">Funds</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="true">
+        <span class="sun-icon" aria-hidden="true">☀</span>
+        <span class="moon-icon" aria-hidden="true">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <!-- <section class="module learn-module fade-in" id="learn">
+      <div class="module-heading">
+        <p class="eyebrow">Learn the building blocks</p>
+        <h2>Start here if the money words still feel unfamiliar.</h2>
+      </div>
+      <div class="learn-grid" id="learnGrid"></div>
+    </section> -->
+
+    <section class="intro-band fade-in" id="planner">
+      <div>
+        <p class="eyebrow">Financial independence questionnaire</p>
+        <h1>Your financial independence cockpit.</h1>
+      </div>
+      <div class="intro-console" aria-label="Planner snapshot">
+        <div>
+          <span>Risk engine</span>
+          <strong id="consoleRisk">6/10</strong>
+        </div>
+        <div>
+          <span>Monthly SIP</span>
+          <strong id="consoleSip">Rs 25,000</strong>
+        </div>
+        <div>
+          <span>Protection scan</span>
+          <strong id="consoleCover">Pending</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="signal-strip fade-in" aria-label="Planning signals">
+      <article>
+        <span>01</span>
+        <strong>Cashflow</strong>
+        <p>Income, dependents, and monthly investable surplus.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <strong>Protection</strong>
+        <p>Health and term insurance readiness before investing.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <strong>Allocation</strong>
+        <p>Equity, debt, gold, REITs, and international exposure.</p>
+      </article>
+    </section>
+
+    <section class="planner-grid">
+      <form class="questionnaire fade-in" id="coachForm">
+        <div class="form-rail" aria-hidden="true">
+          <span class="rail-dot active"></span>
+          <span class="rail-line"></span>
+          <span class="rail-dot" id="railStepTwo"></span>
+        </div>
+
+        <div class="step-panel" data-step="1">
+          <div class="section-title">
+            <span>1</span>
+            <div>
+              <h2>Money Basics</h2>
+              <p>Tell us what your monthly plan can realistically support.</p>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <label>
+              Age
+              <input id="age" name="age" type="number" min="18" max="80" value="28" required>
+            </label>
+
+            <label>
+              Monthly income
+              <input id="income" name="income" type="number" min="0" step="100" value="100000" required>
+            </label>
+
+            <label>
+              Dependents
+              <select id="dependents" name="dependents" required>
+                <option value="0">No dependents</option>
+                <option value="1">1 dependent</option>
+                <option value="2">2 dependents</option>
+                <option value="3">3+ dependents</option>
+              </select>
+            </label>
+
+            <label>
+              Monthly investment
+              <input id="investment" name="investment" type="number" min="0" step="100" value="25000" required>
+            </label>
+          </div>
+
+          <button class="primary-action" type="button" id="toStep2">Proceed</button>
+        </div>
+
+        <div class="step-panel hidden" data-step="2">
+          <div class="section-title">
+            <span>2</span>
+            <div>
+              <h2>Protection and Risk</h2>
+              <p>Balance protection, safe money, and growth appetite.</p>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <label class="switch-card">
+              <input id="healthInsurance" type="checkbox">
+              <span>Have health insurance</span>
+            </label>
+            <label class="switch-card">
+              <input id="termInsurance" type="checkbox">
+              <span>Have term insurance</span>
+            </label>
+          </div>
+
+          <div class="field-grid">
+            <label>
+              Money to keep safe
+              <input id="safeAmount" type="number" min="0" step="100" value="10000" required>
+            </label>
+
+            <label>
+              Money you can risk
+              <input id="riskAmount" type="number" min="0" step="100" value="15000" required>
+            </label>
+          </div>
+
+          <label class="range-label" for="riskScore">
+            Risk tolerance score
+            <span><strong id="riskValue">6</strong>/10</span>
+          </label>
+          <input class="risk-range" id="riskScore" type="range" min="1" max="10" value="6">
+          <p class="risk-copy" id="riskLabel">Balanced investor: can tolerate temporary declines without panic decisions.</p>
+
+          <div class="action-row">
+            <button class="secondary-action" type="button" id="backToStep1">Back</button>
+            <button class="primary-action" type="submit">Generate allocation</button>
+          </div>
+        </div>
+      </form>
+
+      <aside class="plan-preview fade-in" id="allocationCard" aria-live="polite">
+        <p class="eyebrow">Recommended allocation</p>
+        <h2 id="allocationHeadline">Complete the questionnaire</h2>
+        <div class="chart-stage">
+          <div class="chart-orbit" aria-hidden="true"></div>
+          <div class="allocation-chart" id="allocationChart" role="img" aria-label="Asset allocation pie chart"></div>
+          <div class="chart-center">
+            <span>Total</span>
+            <strong>100%</strong>
+          </div>
+        </div>
+        <div class="legend" id="allocationLegend"></div>
+        <div class="sub-allocation hidden" id="equitySubAllocation">
+          <div class="sub-allocation-head">
+            <span>Inside equity</span>
+            <strong id="equitySubHeadline">Suggested sub-allocation</strong>
+          </div>
+          <div class="sub-legend" id="equitySubLegend"></div>
+        </div>
+        <div class="plan-alerts" id="planAlerts"></div>
+        <div class="plan-note">
+          <span>Advisor note</span>
+          <p>Use this as a starting allocation. Rebalance yearly and review insurance before increasing risk.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="module" id="insurance">
+      <div class="module-heading">
+        <p class="eyebrow">Insurance recommendation module</p>
+        <h2>Protect the plan before chasing returns.</h2>
+      </div>
+
+      <div class="recommendation-grid">
+        <article class="recommendation-card">
+          <div class="card-top">
+            <span>Health insurance</span>
+            <strong id="healthStatus">Check pending</strong>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Top recommendation</th>
+                  <th>Best for</th>
+                  <th>Riders to add</th>
+                </tr>
+              </thead>
+              <tbody id="healthRows"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="recommendation-card">
+          <div class="card-top">
+            <span>Term insurance</span>
+            <strong id="termStatus">Check pending</strong>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Top recommendation</th>
+                  <th>Best for</th>
+                  <th>Riders to add</th>
+                </tr>
+              </thead>
+              <tbody id="termRows"></tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="module" id="funds">
+      <div class="module-heading">
+        <p class="eyebrow">Discover fund recommendations</p>
+        <h2>Pick Direct-Growth funds and listed ETFs that match each bucket.</h2>
+      </div>
+      <div class="fund-tabs" role="tablist" aria-label="Fund categories">
+        <button class="tab active" type="button" data-fund="equity">Equity</button>
+        <button class="tab" type="button" data-fund="debt">Debt</button>
+        <button class="tab" type="button" data-fund="commodities">Commodities</button>
+        <button class="tab" type="button" data-fund="international">International</button>
+        <button class="tab" type="button" data-fund="reits">REITs</button>
+      </div>
+      <div class="fund-grid" id="fundGrid"></div>
+    </section>
+
+    <footer class="site-footer">
+      <p class="footer-copy">Copyright (c) 2026 vyb-club. All rights reserved.</p>
+      <p class="footer-disclaimer">
+        Disclaimer: This website is for educational and informational purposes only and is not investment, insurance,
+        tax, or legal advice. Returns are not guaranteed, market-linked products can fall in value, and all financial
+        decisions should be reviewed with a qualified advisor before action.
+      </p>
+    </footer>
+  </main>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
