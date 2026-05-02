@@ -640,6 +640,7 @@ function renderPlanAlerts(profile, allocation) {
     <article class="plan-alert ${alert.type}">
       <strong>${alert.title}</strong>
       <p>${alert.message}</p>
+      ${alert.cta ? `<a class="planner-link alert-link" href="${alert.cta.href}">${alert.cta.label}</a>` : ""}
     </article>
   `).join("");
 }
@@ -655,7 +656,11 @@ function getPlanAlerts(profile) {
     alerts.push({
       type: "urgent",
       title: "Insurance comes first",
-      message: "Take health insurance and term insurance as soon as possible, then start or increase investing."
+      message: "Take health insurance and term insurance as soon as possible, then start or increase investing.",
+      cta: {
+        label: "Find top insurances",
+        href: "./app.html#insurance"
+      }
     });
   }
 
